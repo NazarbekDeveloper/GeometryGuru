@@ -39,5 +39,9 @@ else if(tanlanganShakl == 3)
             Console.Write("Siz kiritgan tomonlardan uchburchak yasab bo'lmaydi.\n Qaytadan");
         }    
 }
+else
+{
+    Console.WriteLine("Hazillashyabsizmi jigar. Bizda bunday shakl mavjud emas...");
+}
 
 Console.WriteLine("Salomat bo'ling jigar. Yaxshi boring :)");
