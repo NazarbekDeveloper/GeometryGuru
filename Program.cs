@@ -10,45 +10,36 @@ do
     {
         case 1:
             Console.Write("Kvadratning tomonini kiriting\na = ");
-            int a = int.Parse(Console.ReadLine());
-            Console.WriteLine($"S = {a * a}");
+            double a = double.Parse(Console.ReadLine());
+            Console.WriteLine($"S = {YuzaHisoblaKvadrat(a)}");
             break;
         case 2:
             Console.Write("To'g'ri to'rtburchakning birinchi tomon uzunligini kiriting\na = ");
-            int b = int.Parse(Console.ReadLine());
+            double b = double.Parse(Console.ReadLine());
             Console.Write("Endi esa ikkinchi tomoni uzunligini kiriting\nb = ");
-            int c = int.Parse(Console.ReadLine());
-            Console.WriteLine($"S = {b * c}");
+            double c = double.Parse(Console.ReadLine());
+            Console.WriteLine($"S = {YuzaHisoblaTortburchak(b, c)}");
             break;
         case 3:
-            double P, S;
             Console.Write("Uchburchakning tomonlarini kiriting\na = ");
-            int d = int.Parse(Console.ReadLine());
+            double d = double.Parse(Console.ReadLine());
             Console.Write("b = ");
-            int e = int.Parse(Console.ReadLine());
+            double e = double.Parse(Console.ReadLine());
             Console.Write("c = ");
-            int f = int.Parse(Console.ReadLine());
+            double f = double.Parse(Console.ReadLine());
             bool isTriangle = (d + e > f) && (d + f > e) && (e + f > d);
             if (isTriangle)
             {
-                P = (d + e + f) / 2.0;
-                S = Math.Sqrt(P * (P - d) * (P - e) * (P - f));
-                Console.WriteLine($"S = {S}");
+
+                Console.WriteLine($"S = {YuzaHisoblaUchburchak}");
             }
             else
             {
-                Console.Write("Siz kiritgan tomonlardan uchburchak yasab bo'lmaydi.\n Qaytadan");
+                Console.Write("Siz kiritgan tomonlardan uchburchak yasab bo'lmaydi.");
             }
             break;
         case 4:
-            for (int i = 2; i <= 10; i++)
-            {
-                for (int j = 1; j <= 10; j++)
-                {
-                    Console.WriteLine(i + " * " + j + "=" + (i * j));
-                }
-                System.Console.WriteLine();
-            }
+            KarraJadvalChiqar();
             break;
         default:
             Console.WriteLine("Hazillashyabsizmi jigar. Bizda bunday shakl mavjud emas...");
@@ -60,3 +51,30 @@ do
     qaytaIshlataman = Convert.ToInt16(Console.ReadLine());
 } while (qaytaIshlataman == 1);
 Console.WriteLine("Salomat bo'ling jigar. Yaxshi boring :)");
+
+static double YuzaHisoblaKvadrat(double a)
+{
+    return a * a;
+}
+static double YuzaHisoblaTortburchak(double a, double b)
+{
+    return a * b;
+}
+static double YuzaHisoblaUchburchak(double a, double b, double c)
+{
+    double P, S;
+    P = (a + b + c) / 2.0;
+    S = Math.Sqrt(P * (P - a) * (P - b) * (P - c));
+    return S;
+}
+static void KarraJadvalChiqar()
+{
+    for (int i = 2; i <= 10; i++)
+    {
+        for (int j = 1; j <= 10; j++)
+        {
+            Console.WriteLine(i + " * " + j + "=" + (i * j));
+        }
+        System.Console.WriteLine();
+    }
+}
