@@ -1,80 +1,61 @@
-﻿Console.WriteLine("Assalomu alaykum Geometry Guru loyihasiga xush kelibsiz!!!");
+﻿using GeometryGuru;
+
+Printer printer = new Printer();
+Yuza yuza = new Yuza();
+KarraJadval karra = new KarraJadval();
+printer.PrintLine("Assalomu alaykum Geometry Guru loyihasiga xush kelibsiz!!!");
 int qaytaIshlataman;
 do
 {
-    Console.WriteLine("Qaysi shaklning yuzasini hisoblaymi?");
-    Console.WriteLine("1.Kvadrat\n2.To'g'ri to'rtburchak\n3.Uchburchak\n4.Karra jadval");
-    Console.Write("Tanlang: ");
-    int tanlanganShakl = int.Parse(Console.ReadLine());
+    printer.PrintLine("Qaysi shaklning yuzasini hisoblaymi?");
+    printer.PrintLine("1.Kvadrat\n2.To'g'ri to'rtburchak\n3.Uchburchak\n4.Karra jadval");
+    printer.Print("Tanlang: ");
+    int tanlanganShakl = int.Parse(Reader.ConsoleReader());
     switch (tanlanganShakl)
     {
         case 1:
-            Console.Write("Kvadratning tomonini kiriting\na = ");
-            double a = double.Parse(Console.ReadLine());
-            Console.WriteLine($"S = {YuzaHisoblaKvadrat(a)}");
+            printer.Print("Kvadratning tomonini kiriting\na = ");
+            double a = double.Parse(Reader.ConsoleReader());
+            printer.PrintLine($"S = {yuza.YuzaHisoblaKvadrat(a)}");
             break;
         case 2:
-            Console.Write("To'g'ri to'rtburchakning birinchi tomon uzunligini kiriting\na = ");
-            double b = double.Parse(Console.ReadLine());
-            Console.Write("Endi esa ikkinchi tomoni uzunligini kiriting\nb = ");
-            double c = double.Parse(Console.ReadLine());
-            Console.WriteLine($"S = {YuzaHisoblaTortburchak(b, c)}");
+            printer.Print("To'g'ri to'rtburchakning birinchi tomon uzunligini kiriting\na = ");
+            double b = double.Parse(Reader.ConsoleReader());
+            printer.Print("Endi esa ikkinchi tomoni uzunligini kiriting\nb = ");
+            double c = double.Parse(Reader.ConsoleReader());
+            printer.PrintLine($"S = {yuza.YuzaHisoblaTortburchak(b, c)}");
             break;
         case 3:
-            Console.Write("Uchburchakning tomonlarini kiriting\na = ");
-            double d = double.Parse(Console.ReadLine());
-            Console.Write("b = ");
-            double e = double.Parse(Console.ReadLine());
-            Console.Write("c = ");
-            double f = double.Parse(Console.ReadLine());
-            bool isTriangle = (d + e > f) && (d + f > e) && (e + f > d);
-            if (isTriangle)
+            printer.Print("Uchburchakning tomonlarini kiriting\na = ");
+            double d = double.Parse(Reader.ConsoleReader());
+            printer.Print("b = ");
+            double e = double.Parse(Reader.ConsoleReader());
+            printer.Print("c = ");
+            double f = double.Parse(Reader.ConsoleReader());
+            if (IsUchburchak(d , e , f))
             {
 
-                Console.WriteLine($"S = {YuzaHisoblaUchburchak}");
+                printer.PrintLine($"S = {yuza.YuzaHisoblaUchburchak(d , e , f)}");
             }
             else
             {
-                Console.Write("Siz kiritgan tomonlardan uchburchak yasab bo'lmaydi.");
+                printer.PrintLine("Siz kiritgan tomonlardan uchburchak yasab bo'lmaydi.");
             }
             break;
         case 4:
-            KarraJadvalChiqar();
+            karra.KarraJadvalChiqar();
             break;
         default:
-            Console.WriteLine("Hazillashyabsizmi jigar. Bizda bunday shakl mavjud emas...");
+            printer.PrintLine("Hazillashyabsizmi jigar. Bizda bunday shakl mavjud emas...");
             break;
 
     }
-    System.Console.WriteLine("Dasturni qaytadan ishlatvoramizami oka?(1.ha 0.yo'q)");
-    Console.Write(">> ");
-    qaytaIshlataman = Convert.ToInt16(Console.ReadLine());
+    printer.PrintLine("Dasturni qaytadan ishlatvoramizami oka?(1.ha 0.yo'q)");
+    printer.Print(">> ");
+    qaytaIshlataman = Convert.ToInt16(Reader.ConsoleReader());
 } while (qaytaIshlataman == 1);
-Console.WriteLine("Salomat bo'ling jigar. Yaxshi boring :)");
-
-static double YuzaHisoblaKvadrat(double a)
+static bool IsUchburchak(double d , double e , double f)
 {
-    return a * a;
+    return (d + e > f) && (d + f > e) && (e + f > d);
 }
-static double YuzaHisoblaTortburchak(double a, double b)
-{
-    return a * b;
-}
-static double YuzaHisoblaUchburchak(double a, double b, double c)
-{
-    double P, S;
-    P = (a + b + c) / 2.0;
-    S = Math.Sqrt(P * (P - a) * (P - b) * (P - c));
-    return S;
-}
-static void KarraJadvalChiqar()
-{
-    for (int i = 2; i <= 10; i++)
-    {
-        for (int j = 1; j <= 10; j++)
-        {
-            Console.WriteLine(i + " * " + j + "=" + (i * j));
-        }
-        System.Console.WriteLine();
-    }
-}
+printer.PrintLine("Salomat bo'ling jigar. Yaxshi boring :)");
