@@ -16,14 +16,30 @@ do
         case 1:
             printer.Print("Kvadratning tomonini kiriting\na = ");
             double a = double.Parse(Reader.ConsoleReader());
-            printer.PrintLine($"S = {yuza.YuzaHisoblaKvadrat(a)}");
+            try
+            {
+                if (a <= 0) throw new ArgumentOutOfRangeException();
+                printer.PrintLine($"S = {yuza.YuzaHisoblaKvadrat(a)}");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                printer.PrintLine("Oka kvadratning tomoni bunaqa son bo'lolmidiku. Nimala qvos..");
+            }
             break;
         case 2:
             printer.Print("To'g'ri to'rtburchakning birinchi tomon uzunligini kiriting\na = ");
             double b = double.Parse(Reader.ConsoleReader());
             printer.Print("Endi esa ikkinchi tomoni uzunligini kiriting\nb = ");
             double c = double.Parse(Reader.ConsoleReader());
-            printer.PrintLine($"S = {yuza.YuzaHisoblaTortburchak(b, c)}");
+            try
+            {
+                if (b <= 0 || c <= 0) throw new ArgumentOutOfRangeException();
+                printer.PrintLine($"S = {yuza.YuzaHisoblaTortburchak(b, c)}");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                printer.PrintLine("Oka to'rtburchakning tomonlari bunaqa son bo'lolmidiku. Nimala qvos..");
+            }
             break;
         case 3:
             printer.Print("Uchburchakning tomonlarini kiriting\na = ");
@@ -32,14 +48,21 @@ do
             double e = double.Parse(Reader.ConsoleReader());
             printer.Print("c = ");
             double f = double.Parse(Reader.ConsoleReader());
-            if (IsUchburchak(d , e , f))
+            try
             {
-
-                printer.PrintLine($"S = {yuza.YuzaHisoblaUchburchak(d , e , f)}");
+                if (d <= 0 || e <= 0 || f <= 0) throw new ArgumentOutOfRangeException();
+                if (IsUchburchak(d, e, f))
+                {
+                    printer.PrintLine($"S = {yuza.YuzaHisoblaUchburchak(d, e, f)}");
+                }
+                else
+                {
+                    printer.PrintLine("Siz kiritgan tomonlardan uchburchak yasab bo'lmaydi.");
+                }
             }
-            else
+            catch (ArgumentOutOfRangeException)
             {
-                printer.PrintLine("Siz kiritgan tomonlardan uchburchak yasab bo'lmaydi.");
+                printer.PrintLine("Oka uchburchakning tomonlari bunaqa son bo'lolmidiku. Nimala qvos..");
             }
             break;
         case 4:
@@ -54,7 +77,7 @@ do
     printer.Print(">> ");
     qaytaIshlataman = Convert.ToInt16(Reader.ConsoleReader());
 } while (qaytaIshlataman == 1);
-static bool IsUchburchak(double d , double e , double f)
+static bool IsUchburchak(double d, double e, double f)
 {
     return (d + e > f) && (d + f > e) && (e + f > d);
 }
